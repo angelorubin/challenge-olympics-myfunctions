@@ -1,59 +1,161 @@
-let olympicsMedalTable = [
-    { id: 1, country: "BRASIL", gold: 7, silver: 6, bronze: 6, continent: "AMERICA DO SUL" },
-    { id: 2, country: "USA", gold: 46, silver: 37, bronze: 17, continent: "AMERICA DO NORTE" },
-    { id: 3, country: "CHINA", gold: 26, silver: 18, bronze: 26, continent: "ASIA" },
-    { id: 4, country: "RUSSIA", gold: 19, silver: 18, bronze: 19, continent: "EUROPA" },
-    { id: 5, country: "REINO UNIDO", gold: 27, silver: 23, bronze: 17, continent: "EUROPA" },
-    { id: 6, country: "ALEMANHA", gold: 17, silver: 10, bronze: 15, continent: "EUROPA" },
-    { id: 7, country: "JAPÃO", gold: 12, silver: 8, bronze: 21, continent: "ASIA" },
-    { id: 8, country: "ARGENTINA", gold: 3, silver: 1, bronze: 0, continent: "AMERICA DO SUL" },
-    { id: 9, country: "ITALIA", gold: 8, silver: 12, bronze: 8, continent: "EUROPA" },
-    { id: 10, country: "QUÊNIA", gold: 6, silver: 6, bronze: 1, continent: "AFRICA" },
+const olympicsMedalTable = [
+	{
+		id: 1,
+		country: "BRASIL",
+		gold: 7,
+		silver: 6,
+		bronze: 6,
+		continent: "AMERICA DO SUL",
+	},
+	{
+		id: 2,
+		country: "USA",
+		gold: 46,
+		silver: 37,
+		bronze: 17,
+		continent: "AMERICA DO NORTE",
+	},
+	{
+		id: 3,
+		country: "CHINA",
+		gold: 26,
+		silver: 18,
+		bronze: 26,
+		continent: "ASIA",
+	},
+	{
+		id: 4,
+		country: "RUSSIA",
+		gold: 19,
+		silver: 18,
+		bronze: 19,
+		continent: "EUROPA",
+	},
+	{
+		id: 5,
+		country: "REINO UNIDO",
+		gold: 27,
+		silver: 23,
+		bronze: 17,
+		continent: "EUROPA",
+	},
+	{
+		id: 6,
+		country: "ALEMANHA",
+		gold: 17,
+		silver: 10,
+		bronze: 15,
+		continent: "EUROPA",
+	},
+	{
+		id: 7,
+		country: "JAPÃO",
+		gold: 12,
+		silver: 8,
+		bronze: 21,
+		continent: "ASIA",
+	},
+	{
+		id: 8,
+		country: "ARGENTINA",
+		gold: 3,
+		silver: 1,
+		bronze: 0,
+		continent: "AMERICA DO SUL",
+	},
+	{
+		id: 9,
+		country: "ITALIA",
+		gold: 8,
+		silver: 12,
+		bronze: 8,
+		continent: "EUROPA",
+	},
+	{
+		id: 10,
+		country: "QUÊNIA",
+		gold: 6,
+		silver: 6,
+		bronze: 1,
+		continent: "AFRICA",
+	},
 ];
 
 Array.prototype.customFind = function (predicate) {
-    // Implemente aqui seu algoritmo
-    return null;
-}
+	/**
+	 * O método find() retorna o valor do primeiro elemento do
+	 * array que satisfizer a função de teste provida.
+	 * Caso contrario, undefined é retornado.
+	 */
+
+	// Implemente aqui seu algoritmo
+	return typeof this === "object"
+		? this.filter((value) => predicate(value))[0]
+		: undefined;
+};
+
+const found = olympicsMedalTable.customFind((i) => i.continent === "ASIA");
+
+console.log(found);
 
 Array.prototype.customSome = function (predicate) {
-    // Implemente aqui seu algoritmo
-    return false;
-}
+	/**
+	 * O método some() testa se ao menos um dos elementos no array
+	 * passa no teste implementado pela função atribuída e retorna um valor true ou false.
+	 */
+
+	// Implemente aqui seu algoritmo
+	return this.map((value) => (predicate(value) ? true : false));
+};
+
+// const found = [15, 12, 10, 10].customSome((value) => value === 10);
+
+// console.log(found);
 
 Array.prototype.customFilter = function (predicate) {
-    // Implemente aqui seu algoritmo
-    return [];
-}
+	// Implemente aqui seu algoritmo
+	return [];
+};
 
 Array.prototype.customMap = function (callback) {
-    // Implemente aqui seu algoritmo
-    return [];
-}
+	// Implemente aqui seu algoritmo
+	return [];
+};
 
 Array.prototype.customReduce = function (callback, initialValue) {
-    // Implemente aqui seu algoritmo
-    return null;
-}
+	// Implemente aqui seu algoritmo
+	return null;
+};
 
 // Código modelo utilizando filter, map e reduce
 
-const resultFilterMapReduce = olympicsMedalTable.filter(i => i.continent === "ASIA") // JAPÃO e CHINA 
-    .map(i => i.gold) // 26 e 12
-    .reduce((total, quantity) => total + quantity); // 38
+const resultFilterMapReduce = olympicsMedalTable
+	.filter((i) => i.continent === "ASIA") // JAPÃO e CHINA
+	.map((i) => i.gold) // 26 e 12
+	.reduce((total, quantity) => total + quantity); // 38
 
-console.log(`Medalhas de Ouro no continente Asiático: ${resultFilterMapReduce}`);
+console.log(
+	`Medalhas de Ouro no continente Asiático: ${resultFilterMapReduce}`
+);
 
+/**
+ * Implemente as funções customizadas - customFilter, customMap e customReduce e
+ * verique se o retorno é igual ao do código modelo
+ */
 
-// Implemente as funções customizadas - customFilter, customMap e customReduce e verique se o retorno é igual ao do código modelo
+const resultByCustomFilterMapReduce = olympicsMedalTable
+	.customFilter((i) => i.continent === "ASIA")
+	.customMap((i) => i.gold)
+	.customReduce((total, quantity) => total + quantity);
 
-const resultByCustomFilterMapReduce = olympicsMedalTable.customFilter(i => i.continent === "ASIA")
-    .customMap(i => i.gold)
-    .customReduce((total, quantity) => total + quantity);
+console.log(
+	`Resultado custom - Medalhas de Ouro no continente Asiático: ${resultByCustomFilterMapReduce}`
+);
 
-console.log(`Resultado custom - Medalhas de Ouro no continente Asiático: ${resultByCustomFilterMapReduce}`);
-
-/* DESAFIOS - CONCLUA AS FUNÇÕES customSome, customFind E UTILIZANDO TODAS AS FUNÇÕES 'CUSTOM' CONCLUA OS DESAFIOS ABAIXO: */
+/**
+ * DESAFIOS - CONCLUA AS FUNÇÕES customSome, customFind E UTILIZANDO TODAS AS FUNÇÕES 'CUSTOM'
+ * CONCLUA OS DESAFIOS ABAIXO:
+ */
 
 // 1 - Crie um algoritmo que encontre o único pais do continente Africano
 // const paisAfricano =  <seu código aqui>;
